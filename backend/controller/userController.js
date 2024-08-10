@@ -65,6 +65,8 @@ exports.updateUser = async (req, res) => {
 
         if (data.password) {
             data.password = await bcrypt.hash(data.password, 10);
+        } else {
+            delete data.password;
         }
 
         const user = await userTable.findByIdAndUpdate(id, data, { new: true });
@@ -78,7 +80,6 @@ exports.updateUser = async (req, res) => {
         res.status(500).json({ success: false, message: 'Server error!' });
     }
 };
-
 
 exports.deleteUser = async (req, res) => {
     try {

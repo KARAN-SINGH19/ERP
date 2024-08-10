@@ -31,12 +31,15 @@ const UpdateCandidate = () => {
     const [positionStatus, setPositionStatus] = useState([]);
     const [recruiter, setRecruiter] = useState("");
     const [file, setFile] = useState(null);
-
+    const [users, setUsers] = useState([]);
     const [existingData, setExistingData] = useState({});
+    const [selectedUser, setSelectedUser] = useState("");
+
 
     async function fetchCandidate() {
         try {
             const response = await axios.get(`http://localhost:4000/api/v1/getCandidate/${id}`);
+            console.log(response)
             if (response) {
                 setMainFunction(response.data.candidate.mainFunction);
                 setSubFunction(response.data.candidate.subFunction);
@@ -66,14 +69,29 @@ const UpdateCandidate = () => {
     }
 
     useEffect(() => {
-        fetchCandidate();
+        fetchCandidate()
+        fetchUsers();
     }, []);
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
     };
 
+    const fetchUsers = async () => {
+        try {
+            const response = await axios.get("http://localhost:4000/api/v1/getUserNames");
+            if (response.data.success) {
+                setUsers(response.data.user);
+            } else {
+                console.error("Failed to fetch users");
+            }
+        } catch (error) {
+            console.error("Server error:", error);
+        }
+    };
+
     const updateCandidate = async (id) => {
+        console.log("Selected User:", selectedUser);
         const data = {
             mainFunction: mainFunction !== existingData.mainFunction ? mainFunction : existingData.mainFunction,
             subFunction: subFunction !== existingData.subFunction ? subFunction : existingData.subFunction,
@@ -90,7 +108,7 @@ const UpdateCandidate = () => {
             reportingTo: reportingTo !== existingData.reportingTo ? reportingTo : existingData.reportingTo,
             comments: comments !== existingData.comments ? comments : existingData.comments,
             positionStatus: positionStatus !== existingData.positionStatus ? positionStatus : existingData.positionStatus,
-            recruiter: recruiter !== existingData.recruiter ? recruiter : existingData.recruiter,
+            recruiter: selectedUser && selectedUser !== existingData.recruiter ? selectedUser : existingData.recruiter,
         };
 
         const formData = new FormData();
@@ -173,10 +191,10 @@ const UpdateCandidate = () => {
                                 </Form.Group>
 
                                 <Form.Group className="mb-3">
-                                    <FloatingLabel label="Company">
+                                    <FloatingLabel label="Current Organization">
                                         <Form.Control
                                             type='text'
-                                            placeholder="Company"
+                                            placeholder="Current Organization"
                                             value={company}
                                             onChange={(e) => setCompany(e.target.value)}
                                         />
@@ -184,10 +202,10 @@ const UpdateCandidate = () => {
                                 </Form.Group>
 
                                 <Form.Group className="mb-3">
-                                    <FloatingLabel label="Location">
+                                    <FloatingLabel label="Current Location">
                                         <Form.Control
                                             type='text'
-                                            placeholder="Location"
+                                            placeholder="Current Location"
                                             value={location}
                                             onChange={(e) => setLocation(e.target.value)}
                                             required
@@ -271,6 +289,22 @@ const UpdateCandidate = () => {
                                             onChange={(e) => setComments(e.target.value)}
                                         />
                                     </FloatingLabel>
+                                </Form.Group>
+
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Select User</Form.Label>
+                                    <Form.Select
+                                        value={selectedUser}
+                                        onChange={(e) => setSelectedUser(e.target.value)}
+                                        required
+                                    >
+                                        <option value="">Current Recruiter is {recruiter}</option>
+                                        {users.map(user => (
+                                            <option key={user._id} value={user.name}>
+                                                {user.name}
+                                            </option>
+                                        ))}
+                                    </Form.Select>
                                 </Form.Group>
 
                                 <Form.Group className="mb-3">

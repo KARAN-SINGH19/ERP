@@ -58,9 +58,11 @@ const UpdateUser = () => {
         name: name !== existingName ? name : existingName,
         phoneNo: phoneNo !== existingPhoneNo ? phoneNo : existingPhoneNo,
         email: email !== existingEmail ? email : existingEmail,
-        password: pass !== existingPass ? pass : existingPass
-    }
+    };
 
+    if (pass) {
+        data.password = pass;
+    }
 
     async function updateUser(id) {
         try {

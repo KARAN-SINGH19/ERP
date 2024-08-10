@@ -129,12 +129,6 @@ const UpdatePosition = () => {
                                     </FloatingLabel>
                                 </Form.Group>
 
-                                <Form.Group className='mb-3'>
-                                    <FloatingLabel label='Job Description'>
-                                        <Form.Control as='textarea' placeholder='Job Description' value={jobDescription} onChange={(e) => setJobDescription(e.target.value)} />
-                                    </FloatingLabel>
-                                </Form.Group>
-
                                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                                     <Button style={{ width: '25%' }} onClick={updatePosition} variant='primary' size='lg'>
                                         Update Position

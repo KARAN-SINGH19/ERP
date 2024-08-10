@@ -175,41 +175,35 @@ exports.uploadCandidateResumeForUpdate = upload.single("resume");
 
 exports.updateCandidate = async (req, res) => {
   try {
-    const { id } = req.params;
+      const { id } = req.params;
+      const data = JSON.parse(req.body.data);
 
-    // Parse the data from the form
-    const data = JSON.parse(req.body.data);
+      const existingCandidate = await Candidate.findById(id);
 
-    // Fetch the existing candidate to check for the current file
-    const existingCandidate = await Candidate.findById(id);
+      if (req.file) {
+          if (existingCandidate.resume && existingCandidate.resume.fileId) {
+              await bucket.delete(new ObjectId(existingCandidate.resume.fileId));
+          }
 
-    // If a new file is uploaded, handle the file replacement
-    if (req.file) {
-      if (existingCandidate.resume && existingCandidate.resume.fileId) {
-        // Delete the old file from GridFS
-        await bucket.delete(new ObjectId(existingCandidate.resume.fileId));
+          data.resume = {
+              fileId: req.file.id,
+              filename: req.file.filename,
+          };
       }
 
-      // Update the candidate data with the new file information
-      data.resume = {
-        fileId: req.file.id,
-        filename: req.file.filename,
-      };
-    }
+      const updatedCandidate = await Candidate.findByIdAndUpdate(id, data, { new: true });
 
-    // Update the candidate information in the database
-    const updatedCandidate = await Candidate.findByIdAndUpdate(id, data, { new: true });
-
-    if (updatedCandidate) {
-      res.status(200).json({ success: true, message: 'Candidate updated successfully!' });
-    } else {
-      res.status(400).json({ success: false, message: 'Candidate not updated!' });
-    }
+      if (updatedCandidate) {
+          res.status(200).json({ success: true, message: 'Candidate updated successfully!' });
+      } else {
+          res.status(400).json({ success: false, message: 'Candidate not updated!' });
+      }
   } catch (error) {
-    console.error('Error updating candidate:', error);
-    res.status(500).json({ success: false, message: 'Server error!' });
+      console.error('Error updating candidate:', error);
+      res.status(500).json({ success: false, message: 'Server error!' });
   }
 };
+
 
 
 exports.searchCandidates = async (req, res) => {

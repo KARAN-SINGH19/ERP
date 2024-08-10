@@ -18,7 +18,7 @@ const AddCandidates = () => {
     const [mainFunction, setMainFunction] = useState("");
     const [subFunction, setSubFunction] = useState("");
     const [candidateName, setCandidateName] = useState("");
-    const [dob, setDob] = useState(null); // Use null for initial state of date picker
+    const [dob, setDob] = useState(null); 
     const [nationality, setNationality] = useState("");
     const [company, setCompany] = useState("");
     const [location, setLocation] = useState("");
@@ -26,7 +26,7 @@ const AddCandidates = () => {
     const [yearsOfExperience, setYearsOfExperience] = useState("");
     const [currentSalary, setCurrentSalary] = useState("");
     const [noticePeriod, setNoticePeriod] = useState("");
-    const [education, setEducation] = useState(""); // New state for education field
+    const [education, setEducation] = useState(""); 
     const [comments, setComments] = useState("");
     const [client, setClient] = useState("");
     const [positionName, setPositionName] = useState("");
@@ -36,8 +36,8 @@ const AddCandidates = () => {
     const [toggleAlert, setToggleAlert] = useState(false);
     const [successMsg, setSuccessMsg] = useState("");
 
-    const [users, setUsers] = useState([]); // State to store the list of users
-    const [selectedUser, setSelectedUser] = useState(""); // State to store the selected user
+    const [users, setUsers] = useState([]); 
+    const [selectedUser, setSelectedUser] = useState(""); 
 
     useEffect(() => {
         fetchUsers();
@@ -61,7 +61,7 @@ const AddCandidates = () => {
         data.append('mainFunction', mainFunction);
         data.append('subFunction', subFunction);
         data.append('candidateName', candidateName);
-        data.append('dob', formatDate(dob)); // Format date before sending
+        data.append('dob', formatDate(dob)); 
         data.append('nationality', nationality);
         data.append('company', company);
         data.append('location', location);
@@ -69,7 +69,7 @@ const AddCandidates = () => {
         data.append('yearsOfExperience', yearsOfExperience);
         data.append('currentSalary', currentSalary);
         data.append('noticePeriod', noticePeriod);
-        data.append('education', education); // Append the new education field
+        data.append('education', education);
         data.append('comments', comments);
         data.append('client', client);
         data.append('positionName', positionName);
@@ -88,7 +88,6 @@ const AddCandidates = () => {
                 }
             });
             if (request) {
-                // Reset form fields and show success message
                 resetFormFields();
                 setToggleAlert(true);
                 setSuccessMsg("Candidate added successfully!!");
@@ -103,7 +102,6 @@ const AddCandidates = () => {
         }
     }
 
-    // Function to format date from Date object to dd/mm/yyyy
     const formatDate = (date) => {
         if (!date) return "";
         const day = date.getDate().toString().padStart(2, '0');
@@ -112,7 +110,6 @@ const AddCandidates = () => {
         return `${day}/${month}/${year}`;
     };
 
-    // Function to reset form fields
     const resetFormFields = () => {
         setMainFunction("");
         setSubFunction("");
@@ -125,7 +122,7 @@ const AddCandidates = () => {
         setYearsOfExperience("");
         setCurrentSalary("");
         setNoticePeriod("");
-        setEducation(""); // Reset the new education field
+        setEducation("");
         setComments("");
         setClient("");
         setPositionName("");
