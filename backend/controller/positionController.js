@@ -203,28 +203,25 @@ exports.addHiring = async (req, res) => {
         const { id } = req.user;
         const newData = { ...data, recruiter: id };
 
-        // Create the hiring record
         const hiring = await Hiring.create(newData);
 
         if (!hiring) {
             return res.status(400).json({ success: false, message: 'Hiring not added!' });
         }
 
-        // Retrieve client, position, and remarks from the created hiring
-        const { client, position, remarks } = hiring;
+        const { client, position, remarks, location } = hiring;
 
-        // Update corresponding Candidate record(s)
         const candidates = await Candidate.find({ _id: hiring.candidate });
 
-        // Update each candidate's status with the new hiring information
         for (let candidate of candidates) {
             candidate.status.push({
                 hiring: hiring._id,
                 client: client,
                 position: position,
-                remark: remarks
+                remark: remarks,
+                location: location
             });
-            await candidate.save(); // Save each candidate after updating
+            await candidate.save();
         }
 
         res.status(200).json({ success: true, message: 'Hiring added successfully!', Id: hiring._id });
@@ -386,7 +383,7 @@ exports.countActivePosition = async (req, res) => {
 
 exports.displayActivePosition = async (req, res) => {
     try {
-        const positions = await Position.find({ status: "Open" }).populate('client', 'company'); // assuming 'name' is the field in Client schema for client's name
+        const positions = await Position.find({ status: "Open" }).populate('client', 'company');
         if (positions.length > 0) {
             return res.status(200).json({
                 success: true,
@@ -395,6 +392,24 @@ exports.displayActivePosition = async (req, res) => {
             });
         } else {
             return res.status(404).json({ success: false, message: 'No active positions found!' });
+        }
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ success: false, message: 'Server Error' });
+    }
+};
+
+exports.displayClosePosition = async (req, res) => {
+    try {
+        const positions = await Position.find({ status: "Close" }).populate('client', 'company');
+        if (positions.length > 0) {
+            return res.status(200).json({
+                success: true,
+                message: 'Close positions retrieved successfully!',
+                positions: positions,
+            });
+        } else {
+            return res.status(404).json({ success: false, message: 'No close positions found!' });
         }
     } catch (error) {
         console.error(error);
@@ -443,3 +458,22 @@ exports.updateStatus = async (req, res) => {
         res.status(500).json({ success: false, message: "Server error" });
     }
 };
+
+
+exports.updateLocation = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { location } = req.body;
+
+        const hiring = await Hiring.findByIdAndUpdate(id, { location }, { new: true });
+
+        if (!hiring) {
+            return res.status(404).json({ success: false, message: 'Hiring not found' });
+        }
+
+        res.status(200).json({ success: true, message: 'Location updated successfully', hiring });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+}

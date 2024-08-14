@@ -1,7 +1,7 @@
 const express = require("express")
 const auth = require("../middleware/auth")
 const router = express.Router();
-const { addPosition, getPositions, deletePosition, getPosition, updatePosition, searchPositions, countPositions, fetchPositions, addHiring, getHirings, updateRemark, deleteHiring, countPositionsByClient, countHiringStatus, updateComment, updateStatus, countActivePosition, displayActivePosition } = require('../controller/positionController');
+const { addPosition, getPositions, deletePosition, getPosition, updatePosition, searchPositions, countPositions, fetchPositions, addHiring, getHirings, updateRemark, deleteHiring, countPositionsByClient, countHiringStatus, updateComment, updateStatus, countActivePosition, displayActivePosition, displayClosePosition, updateLocation } = require('../controller/positionController');
 
 router.post("/addPosition", auth, addPosition);
 router.get("/getPositions", auth, getPositions)
@@ -21,8 +21,10 @@ router.get('/countPositionsByClient', countPositionsByClient);
 router.get('/countHiringStatus', countHiringStatus);
 router.get('/countActivePosition', countActivePosition);
 router.get('/displayActivePosition', displayActivePosition);
+router.get('/displayClosePosition', displayClosePosition);
 
 router.put('/updateComment/:id', updateComment)
 router.put('/updateStatus/:id', updateStatus);
+router.put('/updateLocation/:id', updateLocation);
 
 module.exports = router;

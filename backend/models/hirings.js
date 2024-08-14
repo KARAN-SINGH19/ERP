@@ -5,6 +5,7 @@ const hiringSchema = new mongoose.Schema({
     client: { type: mongoose.Schema.Types.ObjectId, ref: 'Client' },
     position: { type: mongoose.Schema.Types.ObjectId, ref: 'Position' },
     candidate: { type: mongoose.Schema.Types.ObjectId, ref: 'Candidate' },
+    location: { type: String },
     remarks: { type: String },
     comment: { type: String }
 }, { timestamps: true });

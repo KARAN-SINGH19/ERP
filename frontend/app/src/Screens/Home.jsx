@@ -31,6 +31,7 @@ const Home = () => {
   const [rejectedCount, setRejectedCount] = useState(0);
   const [activePositionCount, setActivePositionCount] = useState(0);
   const [activePositions, setActivePositions] = useState([]);
+  const [closedPositions, setClosedPositions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -47,14 +48,16 @@ const Home = () => {
         candidatesResponse,
         positionsResponse,
         hiringStatusResponse,
-        activePositionsResponse
+        activePositionsResponse,
+        closedPositionsResponse
       ] = await Promise.all([
         axios.get('http://localhost:4000/api/v1/countUsers'),
         axios.get('http://localhost:4000/api/v1/countClients'),
         axios.get('http://localhost:4000/api/v1/countCandidates'),
         axios.get('http://localhost:4000/api/v1/countPositionsByClient'),
         axios.get('http://localhost:4000/api/v1/countHiringStatus'),
-        axios.get('http://localhost:4000/api/v1/displayActivePosition')
+        axios.get('http://localhost:4000/api/v1/displayActivePosition'),
+        axios.get('http://localhost:4000/api/v1/displayClosePosition')
       ]);
 
       setRecruitersCount(recruitersResponse.data.count);
@@ -65,6 +68,7 @@ const Home = () => {
       setRejectedCount(hiringStatusResponse.data.rejectedCount);
       setActivePositionCount(activePositionsResponse.data.positions.length);
       setActivePositions(activePositionsResponse.data.positions);
+      setClosedPositions(closedPositionsResponse.data.positions);
     } catch (error) {
       setError('Error fetching data. Please try again later.');
     } finally {
@@ -125,6 +129,18 @@ const Home = () => {
               </ul>
             </Col>
             <Col lg={6}>
+              <h2 className="chart-title">Closed Positions</h2>
+              <ul className="active-positions-list">
+                {closedPositions.map((position, index) => (
+                  <li key={index} className="active-position-item">
+                    {position.position} -- {position.client.company}
+                  </li>
+                ))}
+              </ul>
+            </Col>
+          </Row>
+          <Row>
+            <Col lg={12}>
               <h2 className="chart-title">Positions by Client</h2>
               <ResponsiveContainer width="100%" height={400}>
                 <BarChart data={positionsChartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>

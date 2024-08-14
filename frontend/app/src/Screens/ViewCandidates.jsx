@@ -33,8 +33,8 @@ const ViewCandidates = () => {
         comments: '',
         positionStatus: '',
         recruiter: '',
-        statusFilter: '', // Add statusFilter
-        education: '' // Add education filter
+        statusFilter: '',
+        education: ''
     });
     const [currentPage, setCurrentPage] = useState(1);
     const [candidatesPerPage] = useState(50);
@@ -169,7 +169,8 @@ const ViewCandidates = () => {
                     (status.hiring?.client?.company && status.hiring.client.company.toLowerCase().includes(filterValue.toLowerCase())) ||
                     (status.hiring?.position?.position && status.hiring.position.position.toLowerCase().includes(filterValue.toLowerCase())) ||
                     (status.hiring?.remarks && status.hiring.remarks.toLowerCase().includes(filterValue.toLowerCase())) ||
-                    (status.hiring?.comment && status.hiring.comment.toLowerCase().includes(filterValue.toLowerCase())) // Add this line for comment filter
+                    (status.hiring?.comment && status.hiring.comment.toLowerCase().includes(filterValue.toLowerCase())) ||
+                    (status.hiring?.location && status.hiring.location.toLowerCase().includes(filterValue.toLowerCase()))
                 );
             } else if (column === 'positionStatus') {
                 return candidate.positionStatus && candidate.positionStatus.some(position =>
@@ -401,6 +402,7 @@ const ViewCandidates = () => {
                                                         <div key={status.hiring?._id || Math.random()}>
                                                             Client: {status.hiring?.client?.company || 'N/A'}, <br />
                                                             Position: {status.hiring?.position?.position || 'N/A'}, <br />
+                                                            Location: {status.hiring?.location || 'N/A'}, <br />
                                                             Remark: {status.hiring?.remarks || 'N/A'} <br />
                                                             Comment: {status.hiring?.comment || 'N/A'}  <br />  <br />
                                                         </div>

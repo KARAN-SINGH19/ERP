@@ -22,12 +22,15 @@ const ViewHiring = () => {
         candidate: '',
         recruiter: '',
         remarks: '',
-        comment: ''
+        comment: '',
+        location: ''
     });
     const [currentPage, setCurrentPage] = useState(1);
     const [hiringsPerPage] = useState(50);
     const [editingCommentId, setEditingCommentId] = useState(null);
     const [editedComment, setEditedComment] = useState('');
+    const [editingLocationId, setEditingLocationId] = useState(null);
+    const [editedLocation, setEditedLocation] = useState('');
     const navigate = useNavigate();
 
     const fetchHirings = async () => {
@@ -71,6 +74,39 @@ const ViewHiring = () => {
             }
         }
     }
+
+    const saveLocation = async (id, locationValue) => {
+        try {
+            const response = await axios.put(`http://localhost:4000/api/v1/updateLocation/${id}`, { location: locationValue });
+            if (response.data.success) {
+                Swal.fire({
+                    title: "Updated!",
+                    text: "Location has been updated.",
+                    icon: "success"
+                });
+                fetchHirings();
+            } else {
+                Swal.fire({
+                    title: "Error",
+                    text: "Failed to update location. Please try again later.",
+                    icon: "error"
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                title: "Error",
+                text: "Failed to update location. Please try again later.",
+                icon: "error"
+            });
+        }
+    };
+
+    const handleLocationSave = async (id) => {
+        await saveLocation(id, editedLocation);
+        setEditingLocationId(null);
+        setEditedLocation('');
+    };
+
 
     useEffect(() => {
         fetchHirings()
@@ -213,7 +249,8 @@ const ViewHiring = () => {
                 column === 'client' ? hiring.client.company :
                     column === 'position' ? hiring.position.position :
                         column === 'candidate' ? hiring.candidate.candidateName :
-                            hiring[column];
+                            column === 'location' ? hiring.location : // Add this line
+                                hiring[column];
 
             if (typeof fieldValue === 'string') {
                 return fieldValue.toLowerCase().includes(filterValue.toLowerCase());
@@ -225,6 +262,7 @@ const ViewHiring = () => {
 
         return matchesSearchTerm && matchesColumnFilters;
     });
+
 
     const indexOfLastHiring = currentPage * hiringsPerPage;
     const indexOfFirstHiring = indexOfLastHiring - hiringsPerPage;
@@ -289,6 +327,15 @@ const ViewHiring = () => {
                                                 <input
                                                     type="text"
                                                     placeholder="Filter"
+                                                    value={columnFilters.location || ''}
+                                                    onChange={(e) => handleColumnFilterChange('location', e.target.value)}
+                                                />
+                                                Location
+                                            </th>
+                                            <th>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Filter"
                                                     value={columnFilters.recruiter || ''}
                                                     onChange={(e) => handleColumnFilterChange('recruiter', e.target.value)}
                                                 />
@@ -321,6 +368,31 @@ const ViewHiring = () => {
                                                 <td>{hiring.client ? hiring.client.company : 'N/A'}</td>
                                                 <td>{hiring.position ? hiring.position.position : 'N/A'}</td>
                                                 <td>{hiring.candidate ? hiring.candidate.candidateName : 'N/A'}</td>
+                                                <td>
+                                                    {editingLocationId === hiring._id ? (
+                                                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                            <Form.Control
+                                                                as="textarea"
+                                                                rows={1}
+                                                                value={editedLocation}
+                                                                onChange={(e) => setEditedLocation(e.target.value)}
+                                                            />
+                                                            <div style={{ display: 'flex', marginTop: '5px' }}>
+                                                                <Button onClick={() => handleLocationSave(hiring._id)} variant="success" style={{ marginRight: '5px' }}>Save</Button>
+                                                                <Button onClick={() => setEditingLocationId(null)} variant="secondary">Cancel</Button>
+                                                            </div>
+                                                        </div>
+                                                    ) : (
+                                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                                            <span style={{ flex: 2, color: 'black' }}>{hiring.location}</span>
+                                                            <Button onClick={() => {
+                                                                setEditingLocationId(hiring._id);
+                                                                setEditedLocation(hiring.location);
+                                                            }} variant="primary" style={{ marginLeft: '10px' }}>Edit</Button>
+                                                        </div>
+                                                    )}
+                                                </td>
+
                                                 <td>{hiring.recruiter ? hiring.recruiter.name : 'N/A'}</td>
                                                 <td>
                                                     <select

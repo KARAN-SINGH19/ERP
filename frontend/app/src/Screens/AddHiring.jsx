@@ -9,6 +9,7 @@ import Sidebar from '../Components/Sidebar';
 import Container from 'react-bootstrap/Container';
 import ShowAlert from '../Components/ShowAlert';
 import Select from 'react-select';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { useNavigate } from 'react-router-dom';
 
 const AddHiring = () => {
@@ -21,6 +22,7 @@ const AddHiring = () => {
     const [selectedCandidate, setSelectedCandidate] = useState('');
     const [remarks, setRemarks] = useState('');
     const [comment, setComment] = useState('');
+    const [location, setLocation] = useState('')
 
     const [toggleAlert, setToggleAlert] = useState(false);
     const [successMsg, setSuccessMsg] = useState("");
@@ -90,6 +92,7 @@ const AddHiring = () => {
                 client: selectedClient,
                 position: selectedPosition,
                 candidate: selectedCandidate,
+                location: location,
                 remarks: remarks,
                 comment: comment
             };
@@ -109,6 +112,7 @@ const AddHiring = () => {
                 setSelectedPosition('');
                 setSelectedCandidate('');
                 setRemarks('');
+                setLocation('');
                 setToggleAlert(true);
                 setSuccessMsg("Hiring details added successfully!!");
                 setTimeout(() => {
@@ -194,7 +198,11 @@ const AddHiring = () => {
                                         }}
                                     />
                                 </Form.Group>
-                                <br />
+                                <Form.Group className="mb-3">
+                                    <FloatingLabel label="Location">
+                                        <Form.Control id='location' type='text' placeholder="Location" value={location} onChange={(e) => setLocation(e.target.value)} />
+                                    </FloatingLabel>
+                                </Form.Group>
                                 <div style={{ display: 'flex', justifyContent: "center" }}>
                                     <Button variant="primary" type="submit">
                                         Add Hiring
