@@ -45,7 +45,7 @@ const AddCandidates = () => {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get("http://localhost:4000/api/v1/getUserNames");
+            const response = await axios.get("https://erp-backend-ten.vercel.app/getUserNames");
             if (response.data.success) {
                 setUsers(response.data.user);
             } else {
@@ -81,7 +81,7 @@ const AddCandidates = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const request = await axios.post("http://localhost:4000/api/v1/addCandidate", data, {
+            const request = await axios.post("https://erp-backend-ten.vercel.app/addCandidate", data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${token}`

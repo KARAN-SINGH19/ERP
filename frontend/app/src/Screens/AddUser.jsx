@@ -31,7 +31,7 @@ const AddUser = () => {
     async function addUser() {
         try {
             const token = localStorage.getItem('token');
-            const request = await axios.post("http://localhost:4000/api/v1/addUser", data, {
+            const request = await axios.post("https://erp-backend-ten.vercel.app/addUser", data, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`

@@ -17,7 +17,7 @@ const ViewUsers = () => {
     async function fetchUsers() {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get("http://localhost:4000/api/v1/getUsers", {
+            const response = await axios.get("https://erp-backend-ten.vercel.app/getUsers", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -49,7 +49,7 @@ const ViewUsers = () => {
         })
         if (alert.isConfirmed) {
             try {
-                const response = await axios.delete(`http://localhost:4000/api/v1/deleteUser/${id}`)
+                const response = await axios.delete(`https://erp-backend-ten.vercel.app/deleteUser/${id}`)
                 if (response) {
                     Swal.fire({
                         title: "Cancelled!",
