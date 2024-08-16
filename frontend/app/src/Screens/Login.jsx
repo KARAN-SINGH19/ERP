@@ -26,12 +26,12 @@ const Login = () => {
 
     async function validateUser() {
         try {
-            const response = await axios.post("https://erp-backend-ten.vercel.app/api/v1/loginUser", data)
-            if (response.status === 200) {
-                const token = response.data.token
-                localStorage.setItem("token", token)
-                navigate("/dashboard")
-            }
+            const response = await axios.post("https://erp-backend-ten.vercel.app/api/v1/loginUser", data, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                withCredentials: true // Important: this allows cookies to be sent/received
+            });
         } catch (error) {
             console.log(error)
             setErrAlert(true)
