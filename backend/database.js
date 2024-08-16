@@ -4,8 +4,6 @@ const mongoose = require('mongoose');
 //FUNC TO CONNECT NODE WITH MONGODB
 const connection = () => {
     mongoose.connect(process.env.DB_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
         serverSelectionTimeoutMS: 30000,
         socketTimeoutMS: 45000,
     }).then(() => {
