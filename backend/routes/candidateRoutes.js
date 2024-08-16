@@ -17,7 +17,7 @@ router.get("/getCandidateNameOrg", getCandidateNameOrg)
 
 router.get('/welcome', (req, res) => {
     res.json({ message: 'Welcome to the Talent Vault API!' });
-  });
+});
 
 module.exports = router;
 
