@@ -10,7 +10,10 @@ const app = express();
 // Middleware setup
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+// app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+
+app.use(cors({ credentials: true, origin: "http://82.112.236.55:3000" }));
+
 
 // Route setup
 app.use('/api/v1', candidateRoutes);
