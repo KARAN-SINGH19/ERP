@@ -11,13 +11,11 @@ connect()
 
 
 //MAKING SERVER WHICH WILL RECEIVE ALL KINDS OF REQUESTS
-// app.listen(process.env.PORT, () => {
-//     console.log(`Server is working on http://localhost:${process.env.PORT}`)
-// })
+app.listen(process.env.PORT, () => {
+    console.log(`Server is working on http://localhost:${process.env.PORT}`)
+})
 
 
-app.listen(process.env.PORT || 4000, '0.0.0.0', () => {
-    console.log(`Server is working on http://localhost:${process.env.PORT || 4000}`);
-});
+
 
 
