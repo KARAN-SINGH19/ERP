@@ -10,7 +10,14 @@ const app = express();
 // Middleware setup
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors({ credentials: true, origin: "https://erp-frontend-flame-three.vercel.app" }));
+const corsOptions = {
+  origin: 'https://erp-frontend-flame-three.vercel.app',
+  methods: ['POST', 'GET', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: false
+};
+
+app.use(cors(corsOptions));
 
 // Route setup
 app.use('/api/v1', candidateRoutes);

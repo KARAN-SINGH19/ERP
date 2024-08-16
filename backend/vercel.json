@@ -1,0 +1,34 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "server.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "handle": "filesystem"
+        },
+        {
+            "src": "/api/candidates",
+            "dest": "/routes/candidateRoutes.js"
+        },
+        {
+            "src": "/api/clients",
+            "dest": "/routes/clientRoutes.js"
+        },
+        {
+            "src": "/api/positions",
+            "dest": "/routes/positionRoutes.js"
+        },
+        {
+            "src": "/api/users",
+            "dest": "/routes/userRoutes.js"
+        },
+        {
+            "src": "/api/*",
+            "dest": "/server.js"
+        }
+    ]
+}
