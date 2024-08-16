@@ -12,11 +12,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
-app.get('/api/v1/welcome', (req, res) => {
-    res.json({ message: 'Welcome to the Talent Vault API!' });
-  });
-
-
 // Route setup
 app.use('/api/v1', candidateRoutes);
 app.use('/api/v1', userRoutes);

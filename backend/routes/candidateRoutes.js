@@ -15,5 +15,9 @@ router.put('/updateCandidateStatus/:id', updateCandidateStatus);
 router.get("/countCandidates", countCandidates)
 router.get("/getCandidateNameOrg", getCandidateNameOrg)
 
+router.get('/welcome', (req, res) => {
+    res.json({ message: 'Welcome to the Talent Vault API!' });
+  });
+
 module.exports = router;
 
