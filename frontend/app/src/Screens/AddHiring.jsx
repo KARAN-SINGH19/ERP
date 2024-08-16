@@ -31,7 +31,7 @@ const AddHiring = () => {
     useEffect(() => {
         const fetchClients = async () => {
             try {
-                const response = await axios.get('https://erp-backend-ten.vercel.app/getClientNames');
+                const response = await axios.get('https://erp-backend-gules.vercel.app/getClientNames');
                 if (response.data.success) {
                     setClients(response.data.clientNames.map(client => ({ value: client._id, label: client.company })));
                 } else {
@@ -49,7 +49,7 @@ const AddHiring = () => {
         const fetchPositions = async () => {
             try {
                 if (selectedClient) {
-                    const response = await axios.get(`https://erp-backend-ten.vercel.app/fetchPositions/${selectedClient}`);
+                    const response = await axios.get(`https://erp-backend-gules.vercel.app/fetchPositions/${selectedClient}`);
                     if (response.data.success) {
                         setPositions(response.data.positions.map(position => ({ value: position._id, label: position.position })));
                     } else {
@@ -69,7 +69,7 @@ const AddHiring = () => {
     useEffect(() => {
         const fetchCandidates = async () => {
             try {
-                const response = await axios.get('https://erp-backend-ten.vercel.app/getCandidateNameOrg');
+                const response = await axios.get('https://erp-backend-gules.vercel.app/getCandidateNameOrg');
                 if (response.data.success) {
                     setCandidates(response.data.candidate.map(candidate => ({ value: candidate._id, label: `${candidate.candidateName} || ${candidate.company}` })));
                 } else {
@@ -99,7 +99,7 @@ const AddHiring = () => {
 
             console.log('Submitting Data:', data);
 
-            const response = await axios.post('https://erp-backend-ten.vercel.app/addHiring', data, {
+            const response = await axios.post('https://erp-backend-gules.vercel.app/addHiring', data, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`

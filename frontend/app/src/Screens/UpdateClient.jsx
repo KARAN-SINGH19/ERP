@@ -41,7 +41,7 @@ const UpdateClient = () => {
 
     async function fetchClient() {
         try {
-            const response = await axios.get(`https://erp-backend-ten.vercel.app/getClient/${id}`);
+            const response = await axios.get(`https://erp-backend-gules.vercel.app/getClient/${id}`);
             if (response.data.success) {
                 const { date, company, location, address, contactName, contactEmail, contactPhone, contactName2, contactEmail2, contactPhone2 } = response.data.client;
                 console.log(response.data)
@@ -82,7 +82,7 @@ const UpdateClient = () => {
 
     async function updateClient() {
         try {
-            const response = await axios.put(`https://erp-backend-ten.vercel.app/updateClient/${id}`, {
+            const response = await axios.put(`https://erp-backend-gules.vercel.app/updateClient/${id}`, {
                 date,
                 company,
                 location,

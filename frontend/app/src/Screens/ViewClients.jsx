@@ -35,7 +35,7 @@ const ViewClients = () => {
     async function fetchClients() {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get("https://erp-backend-ten.vercel.app/getClients", {
+            const response = await axios.get("https://erp-backend-gules.vercel.app/getClients", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -53,7 +53,7 @@ const ViewClients = () => {
     async function userRole() {
         try {
             const token = localStorage.getItem('token');
-            const userRole = await axios.get('https://erp-backend-ten.vercel.app/userRole', {
+            const userRole = await axios.get('https://erp-backend-gules.vercel.app/userRole', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -88,7 +88,7 @@ const ViewClients = () => {
 
         if (confirmDelete.isConfirmed) {
             try {
-                const response = await axios.delete(`https://erp-backend-ten.vercel.app/deleteClient/${id}`);
+                const response = await axios.delete(`https://erp-backend-gules.vercel.app/deleteClient/${id}`);
                 if (response.data.success) {
                     Swal.fire({
                         title: "Deleted!",
@@ -120,7 +120,7 @@ const ViewClients = () => {
 
     const handleSearchClick = async () => {
         try {
-            const response = await axios.get('https://erp-backend-ten.vercel.app/searchClients', {
+            const response = await axios.get('https://erp-backend-gules.vercel.app/searchClients', {
                 params: {
                     searchTerm: searchTerm,
                 }

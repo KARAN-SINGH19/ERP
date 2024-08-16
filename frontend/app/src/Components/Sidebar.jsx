@@ -71,7 +71,7 @@ const Sidebar = () => {
   async function userRole() {
     try {
       const token = localStorage.getItem('token');
-      const userRole = await axios.get('https://erp-backend-ten.vercel.app/userRole', {
+      const userRole = await axios.get('https://erp-backend-gules.vercel.app/userRole', {
         headers: {
           Authorization: `Bearer ${token}`
         }

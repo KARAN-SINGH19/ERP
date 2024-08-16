@@ -29,7 +29,7 @@ const UpdateUser = () => {
 
     async function fetchUser() {
         try {
-            const response = await axios.get(`https://erp-backend-ten.vercel.app/getUser/${id}`)
+            const response = await axios.get(`https://erp-backend-gules.vercel.app/getUser/${id}`)
             if (response) {
                 console.log(response.data.user)
                 setName(response.data.user.name)
@@ -66,7 +66,7 @@ const UpdateUser = () => {
 
     async function updateUser(id) {
         try {
-            const request = await axios.put(`https://erp-backend-ten.vercel.app/updateUser/${id}`, data)
+            const request = await axios.put(`https://erp-backend-gules.vercel.app/updateUser/${id}`, data)
             if (request) {
                 navigate("/viewUsers")
             }

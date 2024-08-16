@@ -34,7 +34,7 @@ const ViewPositions = () => {
     async function fetchPositions() {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get("https://erp-backend-ten.vercel.app/getPositions", {
+            const response = await axios.get("https://erp-backend-gules.vercel.app/getPositions", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -52,7 +52,7 @@ const ViewPositions = () => {
     async function userRole() {
         try {
             const token = localStorage.getItem('token');
-            const userRole = await axios.get('https://erp-backend-ten.vercel.app/userRole', {
+            const userRole = await axios.get('https://erp-backend-gules.vercel.app/userRole', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -87,7 +87,7 @@ const ViewPositions = () => {
 
         if (confirmDelete.isConfirmed) {
             try {
-                const response = await axios.delete(`https://erp-backend-ten.vercel.app/deletePosition/${id}`);
+                const response = await axios.delete(`https://erp-backend-gules.vercel.app/deletePosition/${id}`);
                 if (response.data.success) {
                     Swal.fire({
                         title: "Deleted!",
@@ -119,7 +119,7 @@ const ViewPositions = () => {
 
     const handleSearchClick = async () => {
         try {
-            const response = await axios.get('https://erp-backend-ten.vercel.app/searchPositions', {
+            const response = await axios.get('https://erp-backend-gules.vercel.app/searchPositions', {
                 params: {
                     searchTerm: searchTerm,
                     "recruiter.name": columnFilters.recruiter,
@@ -152,7 +152,7 @@ const ViewPositions = () => {
         const newStatus = e.target.value;
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.put(`https://erp-backend-ten.vercel.app/updateStatus/${id}`, { status: newStatus }, {
+            const response = await axios.put(`https://erp-backend-gules.vercel.app/updateStatus/${id}`, { status: newStatus }, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

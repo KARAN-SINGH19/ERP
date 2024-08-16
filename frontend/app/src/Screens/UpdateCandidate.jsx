@@ -38,7 +38,7 @@ const UpdateCandidate = () => {
 
     async function fetchCandidate() {
         try {
-            const response = await axios.get(`https://erp-backend-ten.vercel.app/getCandidate/${id}`);
+            const response = await axios.get(`https://erp-backend-gules.vercel.app/getCandidate/${id}`);
             console.log(response)
             if (response) {
                 setMainFunction(response.data.candidate.mainFunction);
@@ -79,7 +79,7 @@ const UpdateCandidate = () => {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get("https://erp-backend-ten.vercel.app/getUserNames");
+            const response = await axios.get("https://erp-backend-gules.vercel.app/getUserNames");
             if (response.data.success) {
                 setUsers(response.data.user);
             } else {
@@ -118,7 +118,7 @@ const UpdateCandidate = () => {
         }
 
         try {
-            const request = await axios.put(`https://erp-backend-ten.vercel.app/updateCandidate/${id}`, formData, {
+            const request = await axios.put(`https://erp-backend-gules.vercel.app/updateCandidate/${id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

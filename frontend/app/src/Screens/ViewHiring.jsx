@@ -40,7 +40,7 @@ const ViewHiring = () => {
                 ...columnFilters,
                 search: searchTerm.trim()
             });
-            const response = await axios.get(`https://erp-backend-ten.vercel.app/getHirings?${params}`, {
+            const response = await axios.get(`https://erp-backend-gules.vercel.app/getHirings?${params}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -58,7 +58,7 @@ const ViewHiring = () => {
     async function userRole() {
         try {
             const token = localStorage.getItem('token');
-            const userRole = await axios.get('https://erp-backend-ten.vercel.app/userRole', {
+            const userRole = await axios.get('https://erp-backend-gules.vercel.app/userRole', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -77,7 +77,7 @@ const ViewHiring = () => {
 
     const saveLocation = async (id, locationValue) => {
         try {
-            const response = await axios.put(`https://erp-backend-ten.vercel.app/updateLocation/${id}`, { location: locationValue });
+            const response = await axios.put(`https://erp-backend-gules.vercel.app/updateLocation/${id}`, { location: locationValue });
             if (response.data.success) {
                 Swal.fire({
                     title: "Updated!",
@@ -126,7 +126,7 @@ const ViewHiring = () => {
 
         if (confirmDelete.isConfirmed) {
             try {
-                const response = await axios.delete(`https://erp-backend-ten.vercel.app/deleteHiring/${id}`);
+                const response = await axios.delete(`https://erp-backend-gules.vercel.app/deleteHiring/${id}`);
                 if (response.data.success) {
                     Swal.fire({
                         title: "Deleted!",
@@ -166,7 +166,7 @@ const ViewHiring = () => {
 
     const saveRemark = async (id, remarkValue) => {
         try {
-            const response = await axios.put(`https://erp-backend-ten.vercel.app/updateRemark/${id}`, { remarks: remarkValue });
+            const response = await axios.put(`https://erp-backend-gules.vercel.app/updateRemark/${id}`, { remarks: remarkValue });
             if (response.data.success) {
                 Swal.fire({
                     title: "Updated!",
@@ -197,7 +197,7 @@ const ViewHiring = () => {
 
     const saveComment = async (id, commentValue) => {
         try {
-            const response = await axios.put(`https://erp-backend-ten.vercel.app/updateComment/${id}`, { comment: commentValue });
+            const response = await axios.put(`https://erp-backend-gules.vercel.app/updateComment/${id}`, { comment: commentValue });
             if (response.data.success) {
                 Swal.fire({
                     title: "Updated!",
