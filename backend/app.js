@@ -8,17 +8,9 @@ const positionRoutes = require("../backend/routes/positionRoutes")
 const app = express();
 
 // Middleware setup
-const corsOptions = {
-  origin: 'https://erp-frontend-flame-three.vercel.app',
-  methods: ['POST', 'GET', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-};
-
-app.use('*',cors(corsOptions));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 // Route setup
 app.use('/api/v1', candidateRoutes);

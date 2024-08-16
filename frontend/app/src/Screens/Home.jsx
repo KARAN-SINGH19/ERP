@@ -53,13 +53,13 @@ const Home = () => {
         closedPositionsResponse,
         positionsByClientResponse
       ] = await Promise.all([
-        axios.get('https://erp-backend-gules.vercel.app/countUsers'),
-        axios.get('https://erp-backend-gules.vercel.app/countClients'),
-        axios.get('https://erp-backend-gules.vercel.app/countCandidates'),
-        axios.get('https://erp-backend-gules.vercel.app/countHiringStatus'),
-        axios.get('https://erp-backend-gules.vercel.app/displayActivePosition'),
-        axios.get('https://erp-backend-gules.vercel.app/displayClosePosition'),
-        axios.get('https://erp-backend-gules.vercel.app/countPositionsByClient')
+        axios.get('http://localhost:4000/api/v1/countUsers'),
+        axios.get('http://localhost:4000/api/v1/countClients'),
+        axios.get('http://localhost:4000/api/v1/countCandidates'),
+        axios.get('http://localhost:4000/api/v1/countHiringStatus'),
+        axios.get('http://localhost:4000/api/v1/displayActivePosition'),
+        axios.get('http://localhost:4000/api/v1/displayClosePosition'),
+        axios.get('http://localhost:4000/api/v1/countPositionsByClient')
       ]);
 
       // Debugging the responses

@@ -33,7 +33,7 @@ const UpdatePosition = () => {
 
     async function fetchPosition() {
         try {
-            const response = await axios.get(`https://erp-backend-gules.vercel.app/getPosition/${id}`);
+            const response = await axios.get(`http://localhost:4000/api/v1/getPosition/${id}`);
             const position = response.data.position;
             setPositionName(position.positionName);
             setSalary(position.salary);
@@ -49,7 +49,7 @@ const UpdatePosition = () => {
 
     async function getClients() {
         try {
-            const response = await axios.get('https://erp-backend-gules.vercel.app/getClientNames');
+            const response = await axios.get('http://localhost:4000/api/v1/getClientNames');
             setClients(response.data.clientNames);
         } catch (error) {
             console.error('Error fetching clients:', error);
@@ -73,7 +73,7 @@ const UpdatePosition = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.put(`https://erp-backend-gules.vercel.app/updatePosition/${id}`, data, {
+            const response = await axios.put(`http://localhost:4000/api/v1/updatePosition/${id}`, data, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json'

@@ -26,7 +26,7 @@ const Login = () => {
 
     async function validateUser() {
         try {
-            const response = await axios.post("https://erp-backend-gules.vercel.app/api/v1/loginUser", data, {
+            const response = await axios.post("http://localhost:4000/api/v1/api/v1/loginUser", data, {
                 headers: {
                     'Content-Type': 'application/json'
                 },

@@ -43,7 +43,7 @@ const ViewCandidates = () => {
     async function fetchCandidates() {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get("https://erp-backend-gules.vercel.app/getCandidates", {
+            const response = await axios.get("http://localhost:4000/api/v1/getCandidates", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -62,7 +62,7 @@ const ViewCandidates = () => {
     async function userRole() {
         try {
             const token = localStorage.getItem('token');
-            const userRole = await axios.get('https://erp-backend-gules.vercel.app/userRole', {
+            const userRole = await axios.get('http://localhost:4000/api/v1/userRole', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -106,7 +106,7 @@ const ViewCandidates = () => {
 
         if (alert.isConfirmed) {
             try {
-                const response = await axios.delete(`https://erp-backend-gules.vercel.app/deleteCandidate/${id}`);
+                const response = await axios.delete(`http://localhost:4000/api/v1/deleteCandidate/${id}`);
                 if (response.data.success) {
                     Swal.fire({
                         title: "Deleted!",
@@ -132,7 +132,7 @@ const ViewCandidates = () => {
 
     const handleSearchClick = async () => {
         try {
-            const response = await axios.get('https://erp-backend-gules.vercel.app/searchCandidates', {
+            const response = await axios.get('http://localhost:4000/api/v1/searchCandidates', {
                 params: {
                     searchTerm: searchTerm,
                     positionStatus: columnFilters.positionStatus
@@ -416,7 +416,7 @@ const ViewCandidates = () => {
                                                 <td className="actions">
                                                     {candidate.resume && candidate.resume.fileId ? (
                                                         <Button
-                                                            onClick={() => handleResumeDownload(`https://erp-backend-gules.vercel.app/downloadResume/${candidate.resume.fileId}`, candidate.resume.filename)}
+                                                            onClick={() => handleResumeDownload(`http://localhost:4000/api/v1/downloadResume/${candidate.resume.fileId}`, candidate.resume.filename)}
                                                             variant="primary"
                                                             style={{ whiteSpace: "nowrap", textAlign: "center" }}
                                                         >
