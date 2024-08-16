@@ -14,10 +14,10 @@ const corsOptions = {
   origin: 'https://erp-frontend-flame-three.vercel.app',
   methods: ['POST', 'GET', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: false
+  credentials: true
 };
 
-app.use(cors(corsOptions));
+app.use('*',cors(corsOptions));
 
 // Route setup
 app.use('/api/v1', candidateRoutes);
