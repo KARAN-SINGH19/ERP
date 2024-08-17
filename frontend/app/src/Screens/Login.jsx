@@ -28,8 +28,6 @@ const Login = () => {
         try {
             const response = await axios.post("http://82.112.236.55:5000/api/v1/loginUser", data);
             if (response.status === 200) {
-                const token = response.data.token
-                localStorage.setItem("token", token)
                 navigate("/dashboard")
             }
         } catch (error) {
