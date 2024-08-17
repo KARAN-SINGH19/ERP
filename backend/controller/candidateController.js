@@ -12,7 +12,7 @@ const dbName = 'ERP';
 
 let bucket;
 
-MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+MongoClient.connect(url)
   .then(client => {
     const db = client.db(dbName);
     bucket = new GridFSBucket(db, { bucketName: 'candidates' });
@@ -22,7 +22,6 @@ MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const storage = new GridFsStorage({
   url,
-  options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => ({
     bucketName: 'candidates',
     filename: `${Date.now()}-${file.originalname}`
