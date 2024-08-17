@@ -3,7 +3,7 @@ const router = express.Router();
 const auth = require("../middleware/auth")
 const { addClient, getClients, deleteClient, updateClient, getClient, searchClients, getClientNames, countClients } = require('../controller/clientController');
 
-router.post("/addClient", auth, addClient);
+router.post("/addClient", addClient);
 router.get("/getClients", auth, getClients);
 router.delete("/deleteClient/:id", deleteClient);
 router.put("/updateClient/:id", updateClient);
