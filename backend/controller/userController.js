@@ -105,13 +105,16 @@ exports.loginUser = async (req, res) => {
 
         const user = await userTable.findOne({ email: email })
 
-        console.log(user)
-
         if (user) {
-            res.status(200).json({ success: true, message: 'user validated successfully!!' });
-        } else {
-            res.status(400).json({ success: true, message: 'Invalid Credentials!!' });
+            const validatePass = await bcrypt.compare(password, user.password)
+            if (validatePass) {
+                const token = user.getJWTToken()
+                res.status(200).json({ success: true, message: 'user validated successfully!!', token });
+            } else {
+                res.status(400).json({ success: true, message: 'Invalid Credentials!!' });
+            }
         }
+
     } catch (error) {
         res.status(500).json({ success: true, message: 'server error!!' });
     }
