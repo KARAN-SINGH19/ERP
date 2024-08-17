@@ -38,7 +38,7 @@ const UpdateCandidate = () => {
 
     async function fetchCandidate() {
         try {
-            const response = await axios.get(`http://localhost:5000/api/v1/getCandidate/${id}`);
+            const response = await axios.get(`http://82.112.236.55:5000/api/v1/getCandidate/${id}`);
             console.log(response)
             if (response) {
                 setMainFunction(response.data.candidate.mainFunction);
@@ -79,7 +79,7 @@ const UpdateCandidate = () => {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/v1/getUserNames");
+            const response = await axios.get("http://82.112.236.55:5000/api/v1/getUserNames");
             if (response.data.success) {
                 setUsers(response.data.user);
             } else {
@@ -118,7 +118,7 @@ const UpdateCandidate = () => {
         }
 
         try {
-            const request = await axios.put(`http://localhost:5000/api/v1/updateCandidate/${id}`, formData, {
+            const request = await axios.put(`http://82.112.236.55:5000/api/v1/updateCandidate/${id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

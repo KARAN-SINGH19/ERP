@@ -17,7 +17,7 @@ const ViewUsers = () => {
     async function fetchUsers() {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get("http://localhost:5000/api/v1/getUsers", {
+            const response = await axios.get("http://82.112.236.55:5000/api/v1/getUsers", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -49,7 +49,7 @@ const ViewUsers = () => {
         })
         if (alert.isConfirmed) {
             try {
-                const response = await axios.delete(`http://localhost:5000/api/v1/deleteUser/${id}`)
+                const response = await axios.delete(`http://82.112.236.55:5000/api/v1/deleteUser/${id}`)
                 if (response) {
                     Swal.fire({
                         title: "Cancelled!",

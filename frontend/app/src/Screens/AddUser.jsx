@@ -31,7 +31,7 @@ const AddUser = () => {
     async function addUser() {
         try {
             const token = localStorage.getItem('token');
-            const request = await axios.post("http://localhost:5000/api/v1/addUser", data, {
+            const request = await axios.post("http://82.112.236.55:5000/api/v1/addUser", data, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
