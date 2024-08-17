@@ -51,13 +51,13 @@ const Home = () => {
         activePositionsResponse,
         closedPositionsResponse
       ] = await Promise.all([
-        axios.get('http://localhost:4000/api/v1/countUsers'),
-        axios.get('http://localhost:4000/api/v1/countClients'),
-        axios.get('http://localhost:4000/api/v1/countCandidates'),
-        axios.get('http://localhost:4000/api/v1/countPositionsByClient'),
-        axios.get('http://localhost:4000/api/v1/countHiringStatus'),
-        axios.get('http://localhost:4000/api/v1/displayActivePosition'),
-        axios.get('http://localhost:4000/api/v1/displayClosePosition')
+        axios.get('http://localhost:6000/api/v1/countUsers'),
+        axios.get('http://localhost:6000/api/v1/countClients'),
+        axios.get('http://localhost:6000/api/v1/countCandidates'),
+        axios.get('http://localhost:6000/api/v1/countPositionsByClient'),
+        axios.get('http://localhost:6000/api/v1/countHiringStatus'),
+        axios.get('http://localhost:6000/api/v1/displayActivePosition'),
+        axios.get('http://localhost:6000/api/v1/displayClosePosition')
       ]);
 
       setRecruitersCount(recruitersResponse.data.count);

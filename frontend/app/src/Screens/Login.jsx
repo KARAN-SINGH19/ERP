@@ -26,7 +26,7 @@ const Login = () => {
 
     async function validateUser() {
         try {
-            const response = await axios.post("http://localhost:4000/api/v1/loginUser", data)
+            const response = await axios.post("http://localhost:6000/api/v1/loginUser", data)
             if (response.status === 200) {
                 const token = response.data.token
                 localStorage.setItem("token", token)

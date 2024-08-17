@@ -40,7 +40,7 @@ const ViewHiring = () => {
                 ...columnFilters,
                 search: searchTerm.trim()
             });
-            const response = await axios.get(`http://localhost:4000/api/v1/getHirings?${params}`, {
+            const response = await axios.get(`http://localhost:6000/api/v1/getHirings?${params}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -58,7 +58,7 @@ const ViewHiring = () => {
     async function userRole() {
         try {
             const token = localStorage.getItem('token');
-            const userRole = await axios.get('http://localhost:4000/api/v1/userRole', {
+            const userRole = await axios.get('http://localhost:6000/api/v1/userRole', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -77,7 +77,7 @@ const ViewHiring = () => {
 
     const saveLocation = async (id, locationValue) => {
         try {
-            const response = await axios.put(`http://localhost:4000/api/v1/updateLocation/${id}`, { location: locationValue });
+            const response = await axios.put(`http://localhost:6000/api/v1/updateLocation/${id}`, { location: locationValue });
             if (response.data.success) {
                 Swal.fire({
                     title: "Updated!",
@@ -126,7 +126,7 @@ const ViewHiring = () => {
 
         if (confirmDelete.isConfirmed) {
             try {
-                const response = await axios.delete(`http://localhost:4000/api/v1/deleteHiring/${id}`);
+                const response = await axios.delete(`http://localhost:6000/api/v1/deleteHiring/${id}`);
                 if (response.data.success) {
                     Swal.fire({
                         title: "Deleted!",
@@ -166,7 +166,7 @@ const ViewHiring = () => {
 
     const saveRemark = async (id, remarkValue) => {
         try {
-            const response = await axios.put(`http://localhost:4000/api/v1/updateRemark/${id}`, { remarks: remarkValue });
+            const response = await axios.put(`http://localhost:6000/api/v1/updateRemark/${id}`, { remarks: remarkValue });
             if (response.data.success) {
                 Swal.fire({
                     title: "Updated!",
@@ -197,7 +197,7 @@ const ViewHiring = () => {
 
     const saveComment = async (id, commentValue) => {
         try {
-            const response = await axios.put(`http://localhost:4000/api/v1/updateComment/${id}`, { comment: commentValue });
+            const response = await axios.put(`http://localhost:6000/api/v1/updateComment/${id}`, { comment: commentValue });
             if (response.data.success) {
                 Swal.fire({
                     title: "Updated!",

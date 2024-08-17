@@ -41,7 +41,7 @@ const UpdateClient = () => {
 
     async function fetchClient() {
         try {
-            const response = await axios.get(`http://localhost:4000/api/v1/getClient/${id}`);
+            const response = await axios.get(`http://localhost:6000/api/v1/getClient/${id}`);
             if (response.data.success) {
                 const { date, company, location, address, contactName, contactEmail, contactPhone, contactName2, contactEmail2, contactPhone2 } = response.data.client;
                 console.log(response.data)
@@ -82,7 +82,7 @@ const UpdateClient = () => {
 
     async function updateClient() {
         try {
-            const response = await axios.put(`http://localhost:4000/api/v1/updateClient/${id}`, {
+            const response = await axios.put(`http://localhost:6000/api/v1/updateClient/${id}`, {
                 date,
                 company,
                 location,
