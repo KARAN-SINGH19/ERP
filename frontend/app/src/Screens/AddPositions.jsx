@@ -45,7 +45,7 @@ const AddPositions = () => {
     // Fetch candidates function
     async function getCandidates() {
         try {
-            const response = await axios.get('http://localhost:4000/api/v1/getCandidateNames');
+            const response = await axios.get('http://localhost:5000/api/v1/getCandidateNames');
             setCandidates(response.data.candidateNames);
         } catch (error) {
             console.error('Error fetching candidates:', error);
@@ -56,7 +56,7 @@ const AddPositions = () => {
     // Fetch clients function
     async function getClients() {
         try {
-            const response = await axios.get('http://localhost:4000/api/v1/getClientNames');
+            const response = await axios.get('http://localhost:5000/api/v1/getClientNames');
             setClients(response.data.clientNames.map(client => ({ value: client._id, label: client.company })));
         } catch (error) {
             console.error('Error fetching clients:', error);
@@ -74,7 +74,7 @@ const AddPositions = () => {
     async function addPosition() {
         try {
             const token = localStorage.getItem("token");
-            const response = await axios.post('http://localhost:4000/api/v1/addPosition', data, {
+            const response = await axios.post('http://localhost:5000/api/v1/addPosition', data, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

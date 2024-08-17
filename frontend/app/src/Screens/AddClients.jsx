@@ -44,7 +44,7 @@ const AddClients = () => {
     async function AddClients() {
         try {
             const token = localStorage.getItem('token');
-            const request = await axios.post("http://localhost:4000/api/v1/addClient", data, {
+            const request = await axios.post("http://localhost:5000/api/v1/addClient", data, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
