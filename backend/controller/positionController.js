@@ -349,8 +349,8 @@ exports.countPositionsByClient = async (req, res) => {
 
 exports.countHiringStatus = async (req, res) => {
     try {
-        const hiredCount = await Hiring.find({ remarks: "Hired" }).count()
-        const rejectedCount = await Hiring.find({ remarks: "Rejected" }).count()
+        const hiredCount = await Hiring.countDocuments({ remarks: "Hired" });
+        const rejectedCount = await Hiring.countDocuments({ remarks: "Rejected" });
 
         if (hiredCount !== null && rejectedCount !== null) {
             return res.status(200).json({
