@@ -43,7 +43,6 @@ const AddClients = () => {
 
     async function AddClients() {
         try {
-            const token = localStorage.getItem('token');
             const request = await axios.post("http://82.112.236.55:5000/api/v1/addClient", data)
             if (request) {
                 setDate('')
