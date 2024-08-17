@@ -105,6 +105,8 @@ exports.loginUser = async (req, res) => {
 
         const user = await userTable.findOne({ email: email })
 
+        console.log(user)
+
         if (user) {
             res.status(200).json({ success: true, message: 'user validated successfully!!' });
         } else {
