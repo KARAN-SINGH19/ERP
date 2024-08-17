@@ -1,5 +1,6 @@
 const Candidate = require("../models/candidates");
 const userTable = require("../models/user")
+const Hiring = require("../models/hirings")
 const { GridFsStorage } = require('multer-gridfs-storage');
 const { MongoClient, ObjectId, GridFSBucket } = require('mongodb');
 const multer = require("multer");
@@ -146,6 +147,7 @@ exports.deleteCandidate = async (req, res) => {
     const candidate = await Candidate.findById(id);
 
     if (candidate) {
+      await Hiring.deleteMany({ candidate: id });
       await candidate.deleteOne();
       res.status(200).json({ success: true, message: 'Candidate deleted successfully!' });
     } else {
