@@ -34,7 +34,7 @@ const ViewPositions = () => {
     async function fetchPositions() {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get("http://82.112.236.55:5000/api/v1/getPositions", {
+            const response = await axios.get("http://localhost:5000/api/v1/getPositions", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -52,7 +52,7 @@ const ViewPositions = () => {
     async function userRole() {
         try {
             const token = localStorage.getItem('token');
-            const userRole = await axios.get('http://82.112.236.55:5000/api/v1/userRole', {
+            const userRole = await axios.get('http://localhost:5000/api/v1/userRole', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -87,7 +87,7 @@ const ViewPositions = () => {
 
         if (confirmDelete.isConfirmed) {
             try {
-                const response = await axios.delete(`http://82.112.236.55:5000/api/v1/deletePosition/${id}`);
+                const response = await axios.delete(`http://localhost:5000/api/v1/deletePosition/${id}`);
                 if (response.data.success) {
                     Swal.fire({
                         title: "Deleted!",
@@ -119,7 +119,7 @@ const ViewPositions = () => {
 
     const handleSearchClick = async () => {
         try {
-            const response = await axios.get('http://82.112.236.55:5000/api/v1/searchPositions', {
+            const response = await axios.get('http://localhost:5000/api/v1/searchPositions', {
                 params: {
                     searchTerm: searchTerm,
                     "recruiter.name": columnFilters.recruiter,
@@ -152,7 +152,7 @@ const ViewPositions = () => {
         const newStatus = e.target.value;
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.put(`http://82.112.236.55:5000/api/v1/updateStatus/${id}`, { status: newStatus }, {
+            const response = await axios.put(`http://localhost:5000/api/v1/updateStatus/${id}`, { status: newStatus }, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

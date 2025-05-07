@@ -71,7 +71,7 @@ const Sidebar = () => {
   async function userRole() {
     try {
       const token = localStorage.getItem('token');
-      const userRole = await axios.get('http://82.112.236.55:5000/api/v1/userRole', {
+      const userRole = await axios.get('http://localhost:5000/api/v1/userRole', {
         headers: {
           Authorization: `Bearer ${token}`
         }

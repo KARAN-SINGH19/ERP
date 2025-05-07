@@ -105,6 +105,8 @@ exports.loginUser = async (req, res) => {
 
         const user = await userTable.findOne({ email: email })
 
+        console.log(user)
+
         if (user) {
             const validatePass = await bcrypt.compare(password, user.password)
             if (validatePass) {

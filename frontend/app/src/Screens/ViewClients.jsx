@@ -35,7 +35,7 @@ const ViewClients = () => {
     async function fetchClients() {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get("http://82.112.236.55:5000/api/v1/getClients", {
+            const response = await axios.get("http://localhost:5000/api/v1/getClients", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -53,7 +53,7 @@ const ViewClients = () => {
     async function userRole() {
         try {
             const token = localStorage.getItem('token');
-            const userRole = await axios.get('http://82.112.236.55:5000/api/v1/userRole', {
+            const userRole = await axios.get('http://localhost:5000/api/v1/userRole', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -88,7 +88,7 @@ const ViewClients = () => {
 
         if (confirmDelete.isConfirmed) {
             try {
-                const response = await axios.delete(`http://82.112.236.55:5000/api/v1/deleteClient/${id}`);
+                const response = await axios.delete(`http://localhost:5000/api/v1/deleteClient/${id}`);
                 if (response.data.success) {
                     Swal.fire({
                         title: "Deleted!",
@@ -120,7 +120,7 @@ const ViewClients = () => {
 
     const handleSearchClick = async () => {
         try {
-            const response = await axios.get('http://82.112.236.55:5000/api/v1/searchClients', {
+            const response = await axios.get('http://localhost:5000/api/v1/searchClients', {
                 params: {
                     searchTerm: searchTerm,
                 }

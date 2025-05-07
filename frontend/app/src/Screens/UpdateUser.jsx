@@ -29,7 +29,7 @@ const UpdateUser = () => {
 
     async function fetchUser() {
         try {
-            const response = await axios.get(`http://82.112.236.55:5000/api/v1/getUser/${id}`)
+            const response = await axios.get(`http://localhost:5000/api/v1/getUser/${id}`)
             if (response) {
                 console.log(response.data.user)
                 setName(response.data.user.name)
@@ -66,7 +66,7 @@ const UpdateUser = () => {
 
     async function updateUser(id) {
         try {
-            const request = await axios.put(`http://82.112.236.55:5000/api/v1/updateUser/${id}`, data)
+            const request = await axios.put(`http://localhost:5000/api/v1/updateUser/${id}`, data)
             if (request) {
                 navigate("/viewUsers")
             }

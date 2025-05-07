@@ -10,13 +10,14 @@ const app = express();
 // Middleware setup
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(cors({ credentials: true, origin: "http://82.112.236.55:3000" }));
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 app.use(cors({
-    origin: 'http://82.112.236.55', // Update this to your frontend URL
+    origin: 'http://localhost:3000', // Update this to your frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
 
 // Route setup
 app.use('/api/v1', candidateRoutes);

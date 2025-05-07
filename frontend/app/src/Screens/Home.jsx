@@ -53,13 +53,13 @@ const Home = () => {
         closedPositionsResponse,
         positionsByClientResponse
       ] = await Promise.all([
-        axios.get('http://82.112.236.55:5000/api/v1/countUsers'),
-        axios.get('http://82.112.236.55:5000/api/v1/countClients'),
-        axios.get('http://82.112.236.55:5000/api/v1/countCandidates'),
-        axios.get('http://82.112.236.55:5000/api/v1/countHiringStatus'),
-        axios.get('http://82.112.236.55:5000/api/v1/displayActivePosition'),
-        axios.get('http://82.112.236.55:5000/api/v1/displayClosePosition'),
-        axios.get('http://82.112.236.55:5000/api/v1/countPositionsByClient')
+        axios.get('http://localhost:5000/api/v1/countUsers'),
+        axios.get('http://localhost:5000/api/v1/countClients'),
+        axios.get('http://localhost:5000/api/v1/countCandidates'),
+        axios.get('http://localhost:5000/api/v1/countHiringStatus'),
+        axios.get('http://localhost:5000/api/v1/displayActivePosition'),
+        axios.get('http://localhost:5000/api/v1/displayClosePosition'),
+        axios.get('http://localhost:5000/api/v1/countPositionsByClient')
       ]);
 
       // Debugging the responses
